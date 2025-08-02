@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flipping Tycoon</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./assets/coin-flipper-favicon.png">
+  </head>
+
+  <body>
+    <div id="coin-flipper" class="coin-flipper">
+      <h1>Coin Flipper</h1>
+      <div><img src="./assets/heads-or-tails.png" alt="Coin" class="coin-img"></div>
+      <div>
+        <button class="bet-heads">Heads</button>
+        <button class="bet-tails">Tails</button>
+      </div>
+      <div class="results">
+        <p class="terminal">Flip to win!</p>
+        <p class="money">$100.00</p>
+      </div>
+    </div>
+
+    <div id="chances" class="chances">
+      <div class="heads-section">
+        <h2>Heads Chance</h2>
+        <p class="heads-chance">50%</p>
+        <button disabled class="auto-bet-heads secondary">Auto Bet Heads</button>
+      </div>
+      <div class="tails-section">
+        <h2>Tails Chance</h2>
+        <p class="tails-chance">50%</p>
+        <button disabled class="auto-bet-tails secondary">Auto Bet Tails</button>
+      </div>
+    </div>
+
+    <div id="levels">
+      <h1>Level Up</h1>
+      <div class="levels">
+        <div class="box">
+          <h2>Upgrade Heads</h2>
+          <h3>Lvl <span class="heads-lvl">0</span></h3>
+          <p>Heads Chance +0.25%</p>
+          <button class="upgrade-heads-btn">$100</button>
+        </div>
+        <div class="box">
+          <h2>Upgrade Tails</h2>
+          <h3>Lvl <span class="tails-lvl">0</span></h3>
+          <p>Tails Chance +0.25%</p>
+          <button class="upgrade-tails-btn">$100</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-over">
+      <h1>Game Over</h1>
+      <h2>You ran out of money</h2>
+      <h2>Refresh to try again</h2>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
