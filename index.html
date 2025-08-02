@@ -11,7 +11,7 @@
   <body>
     <div id="coin-flipper" class="coin-flipper">
       <h1>Coin Flipper</h1>
-      <div><img src="./assets/heads-or-tails.png" alt="Coin" class="coin-img"></div>
+      <div><img draggable="false" src="./assets/heads-or-tails.png" alt="Coin" class="coin-img"></div>
       <div>
         <button class="bet-heads">Heads</button>
         <button class="bet-tails">Tails</button>
@@ -41,15 +41,106 @@
         <div class="box">
           <h2>Upgrade Heads</h2>
           <h3>Lvl <span class="heads-lvl">0</span></h3>
-          <p>Heads Chance +0.25%</p>
+          <p>Heads Chance +1%</p>
           <button class="upgrade-heads-btn">$100</button>
         </div>
         <div class="box">
           <h2>Upgrade Tails</h2>
           <h3>Lvl <span class="tails-lvl">0</span></h3>
-          <p>Tails Chance +0.25%</p>
+          <p>Tails Chance +1%</p>
           <button class="upgrade-tails-btn">$100</button>
         </div>
+      </div>
+    </div>
+
+    <div id="upgrades" class="upgrades">
+      <div class="lvl-five-upgrade upgrades-box">
+        <div class="heads-upgrade box">
+          <h2>Level 5 Heads</h2>
+          <h3>Unlock Auto Bet Heads</h3>
+          <h3>Unlock for $500</h3>
+          <button class="unlock-auto-bet-heads secondary" disabled>Unlock</button>
+        </div>
+        <div class="tails-upgrade box">
+          <h2>Level 5 Tails</h2>
+          <h3>Unlock Auto Bet Tails</h3>
+          <h3>Unlock for $500</h3>
+          <button class="unlock-auto-bet-tails secondary" disabled>Unlock</button>
+        </div>
+      </div>
+      <div class="lvl-ten-upgrade upgrades-box">
+        <div class="heads-upgrade box">
+          <h2>Level 10 Heads</h2>
+          <h3>Unlock Menu</h3>
+          <h3>Unlock for $1,500</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+        <div class="tails-upgrade box">
+          <h2>Level 10 Tails</h2>
+          <h3>Unlock Achievements</h3>
+          <h3>Unlock for $1,500</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+      </div>
+      <div class="lvl-fifteen-upgrade upgrades-box">
+        <div class="heads-upgrade box">
+          <h2>Level 15 Heads</h2>
+          <h3>Unlock Backgrounds</h3>
+          <h3>Unlock for $5,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+        <div class="tails-upgrade box">
+          <h2>Level 15 Tails</h2>
+          <h3>Unlock Loans</h3>
+          <h3>Unlock for $5,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+      </div>
+      <div class="lvl-twenty-upgrade upgrades-box">
+        <div class="heads-upgrade box">
+          <h2>Level 20 Heads</h2>
+          <h3>Unlock Trophies</h3>
+          <h3>Unlock for $15,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+        <div class="tails-upgrade box">
+          <h2>Level 20 Tails</h2>
+          <h3>Unlock Lootbox</h3>
+          <h3>Unlock for $15,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+      </div>
+      <div class="lvl-twenty-five-upgrade upgrades-box">
+        <div class="heads-upgrade box">
+          <h2>Level 25 Heads</h2>
+          <h3>Unlock 10% Heads Boost</h3>
+          <h3>Unlock for $50,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+        <div class="tails-upgrade box">
+          <h2>Level 25 Tails</h2>
+          <h3>Unlock 10% Tails Boost</h3>
+          <h3>Unlock for $50,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="options">
+      <h1>Options</h1>
+      <div class="options">
+        <button disabled class="teritry mute">Mute</button>
+        <button disabled class="teritry save">Save</button>
+        <button disabled class="teritry save-to-file">Save to File</button>
+        <button disabled class="teritry load-from-file">Load From File</button>
+        <button disabled class="teritry ">Restart</button>
+      </div>
+    </div>
+
+    <div id="flips-predicted">
+      <h1>Flips Predicted</h1>
+      <div class="predicted-flips">
+        <h2>Heads/Tails - $100.00 - Flip 0</h2>
       </div>
     </div>
 

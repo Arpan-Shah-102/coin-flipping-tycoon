@@ -103,6 +103,7 @@ button {
   padding: 20px;
   height: 300px;
   margin: 20px;
+  width: 200px;
 }
 
 /* Main */
@@ -171,7 +172,31 @@ button {
   }
 }
 
+.upgrades-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  margin: 30px 0px;
 
+  & h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 50px 0px 30px 0px;
+}
+
+#flips-predicted {margin: 50px 0px;}
+.predicted-flips {margin: 40px 0px;}
 
 .game-over {
   position: fixed;
