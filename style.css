@@ -8,11 +8,12 @@ body {
   background-color: var(--background-color);
   color: var(--secondary-color);
   scroll-behavior: smooth;
+  transition: all 0.3s ease-in-out;
 }
 :root {
   --primary-color: crimson;
   --secondary-color: white;
-  --background-color: rgb(19, 0, 19);
+  --background-color: rgb(14, 0, 14);
 }
 
 /* Presets */
@@ -106,6 +107,66 @@ button {
   width: 200px;
 }
 
+#backgrounds {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  gap: 20px;
+}
+.backgrounds-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.background {
+  height: 150px;
+  width: 150px;
+  border: 8px solid var(--primary-color);
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  margin: 40px;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 140px;
+
+  &:hover {
+    margin: 30px;
+    padding: 10px;
+  }
+  &:active {
+    transform: rotate(-4deg);
+    opacity: 0.5;
+  }
+}
+.white {background-color: aliceblue; color: black;}
+.orange {background-color: orangered;}
+.yellow {background-color: goldenrod;}
+.green {background-color: forestgreen;}
+.blue {background-color: teal;}
+.purple {background-color: rebeccapurple;}
+.black {background-color: var(--background-color);}
+.orange, .yellow, .green, .blue, .purple {
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  & button {text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);}
+  & .box {box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);}
+}
+
+.red-to-orange {background: linear-gradient(90deg, red, orange);}
+.green-to-yellow {background: linear-gradient(90deg, green, yellow);}
+.blue-to-purple {background: linear-gradient(90deg, blue, purple);}
+.red-to-purple {background: linear-gradient(90deg, red, purple);}
+.blue-to-teal {background: linear-gradient(90deg, blue, teal);}
+.super-bg {background: linear-gradient(90deg, teal, goldenrod, crimson);}
+.ultra-bg {background: linear-gradient(90deg, forestgreen, teal, goldenrod, crimson, rebeccapurple);}
+.red-to-orange, .green-to-yellow, .blue-to-purple, .red-to-purple, .blue-to-teal, .super-bg, .ultra-bg {
+  color: var(--secondary-color);
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  & button {text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);}
+}
+
 /* Main */
 
 .coin-flipper {
@@ -185,6 +246,9 @@ button {
     text-align: center;
   }
 }
+.heads-upgrade, .lvl-up-heads {
+  border-color: teal;
+}
 
 .options {
   display: flex;
@@ -193,6 +257,72 @@ button {
   flex-wrap: wrap;
   gap: 15px;
   margin: 50px 0px 30px 0px;
+}
+
+#items-bought, #trophies-unlocked {
+  margin: 60px 30px;
+  display: none;
+}
+.items-bought, .trophies-unlocked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 30px 10px 0px 10px;
+}
+#item-shop {
+  margin: 60px 0px;
+  display: none;
+}
+.items-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px 20px;
+
+  & h2 {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+}
+.item {
+  height: 300px;
+  width: 150px;
+  margin: 0px;
+  padding: 10px 20px;
+}
+
+#risk-multiplier {
+  margin: 60px 0px;
+  display: none;
+}
+.risk-multiplier-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+  font-size: 1.15rem;
+}
+
+#trophies {
+  margin: 60px 0px;
+  display: none;
+}
+.trophy-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px 20px;
+}
+.trophy > h2 {
+  font-size: 2rem;
 }
 
 #flips-predicted {margin: 50px 0px;}
@@ -204,7 +334,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(174, 0, 0, 0.5);
+  background-color: rgba(174, 0, 0, 0.75);
   display: none;
   flex-direction: column;
   align-items: center;

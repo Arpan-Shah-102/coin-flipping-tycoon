@@ -8,7 +8,7 @@
     <link rel="icon" href="./assets/coin-flipper-favicon.png">
   </head>
 
-  <body>
+  <body class="black">
     <div id="coin-flipper" class="coin-flipper">
       <h1>Coin Flipper</h1>
       <div><img draggable="false" src="./assets/heads-or-tails.png" alt="Coin" class="coin-img"></div>
@@ -38,7 +38,7 @@
     <div id="levels">
       <h1>Level Up</h1>
       <div class="levels">
-        <div class="box">
+        <div class="box lvl-up-heads">
           <h2>Upgrade Heads</h2>
           <h3>Lvl <span class="heads-lvl">0</span></h3>
           <p>Heads Chance +1%</p>
@@ -91,7 +91,7 @@
         </div>
         <div class="tails-upgrade box">
           <h2>Level 15 Tails</h2>
-          <h3>Unlock Loans</h3>
+          <h3>Unlock Risk Multiplier</h3>
           <h3>Unlock for $5,000</h3>
           <button class="unlock- secondary" disabled>Unlock</button>
         </div>
@@ -113,14 +113,28 @@
       <div class="lvl-twenty-five-upgrade upgrades-box">
         <div class="heads-upgrade box">
           <h2>Level 25 Heads</h2>
-          <h3>Unlock 10% Heads Boost</h3>
+          <h3>Unlock Item Shop</h3>
           <h3>Unlock for $50,000</h3>
           <button class="unlock- secondary" disabled>Unlock</button>
         </div>
         <div class="tails-upgrade box">
           <h2>Level 25 Tails</h2>
-          <h3>Unlock 10% Tails Boost</h3>
+          <h3>Unlock Slot Machine</h3>
           <h3>Unlock for $50,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+      </div>
+      <div class="lvl-thirty-upgrade upgrades-box">
+        <div class="heads-upgrade box">
+          <h2>Level 30 Heads</h2>
+          <h3>Unlock 10% Heads Boost</h3>
+          <h3>Unlock for $100,000</h3>
+          <button class="unlock- secondary" disabled>Unlock</button>
+        </div>
+        <div class="tails-upgrade box">
+          <h2>Level 30 Tails</h2>
+          <h3>Unlock 10% Tails Boost</h3>
+          <h3>Unlock for $100,000</h3>
           <button class="unlock- secondary" disabled>Unlock</button>
         </div>
       </div>
@@ -129,11 +143,197 @@
     <div id="options">
       <h1>Options</h1>
       <div class="options">
-        <button disabled class="teritry mute">Mute</button>
+        <button class="teritry mute">Mute</button>
         <button disabled class="teritry save">Save</button>
         <button disabled class="teritry save-to-file">Save to File</button>
         <button disabled class="teritry load-from-file">Load From File</button>
         <button disabled class="teritry ">Restart</button>
+      </div>
+    </div>
+
+    <div id="items-bought">
+      <h1>Items Bought</h1>
+      <div class="items-bought"></div>
+    </div>
+
+    <div id="item-shop">
+      <h1>Item Shop</h1>
+      <div class="items-holder">
+        <div class="item box">
+          <h2>Chips</h2>
+          <h1>🥔</h1>
+          <button class="buy-item teritry">$2,000</button>
+        </div>
+        <div class="item box">
+          <h2>Lottery ticket</h2>
+          <h1>🎟️</h1>
+          <button class="buy-item teritry">$2,000</button>
+        </div>
+        <div class="item box">
+          <h2>Soda</h2>
+          <h1>🥤</h1>
+          <button class="buy-item teritry">$2,000</button>
+        </div>
+        <div class="item box">
+          <h2>Energy drink</h2>
+          <h1>⚡</h1>
+          <button class="buy-item teritry">$3,000</button>
+        </div>
+        <div class="item box">
+          <h2>Protein bar</h2>
+          <h1>🍫</h1>
+          <button class="buy-item teritry">$3,000</button>
+        </div>
+        <div class="item box">
+          <h2>Air freshener</h2>
+          <h1>🌬️</h1>
+          <button class="buy-item teritry">$4,000</button>
+        </div>
+        <div class="item box">
+          <h2>Bottled coffee</h2>
+          <h1>☕</h1>
+          <button class="buy-item teritry">$4,000</button>
+        </div>
+        <div class="item box">
+          <h2>Milk</h2>
+          <h1>🥛</h1>
+          <button class="buy-item teritry">$5,000</button>
+        </div>
+        <div class="item box">
+          <h2>Sandwich</h2>
+          <h1>🥪</h1>
+          <button class="buy-item teritry">$5,000</button>
+        </div>
+        <div class="item box">
+          <h2>Ice cream pint</h2>
+          <h1>🍦</h1>
+          <button class="buy-item teritry">$6,000</button>
+        </div>
+        <div class="item box">
+          <h2>Magazine</h2>
+          <h1>📚</h1>
+          <button class="buy-item teritry">$6,000</button>
+        </div>
+        <div class="item box">
+          <h2>Toilet paper</h2>
+          <h1>🧻</h1>
+          <button class="buy-item teritry">$6,000</button>
+        </div>
+        <div class="item box">
+          <h2>Ibuprofen</h2>
+          <h1>💊</h1>
+          <button class="buy-item teritry">$7,000</button>
+        </div>
+        <div class="item box">
+          <h2>Disposable razor</h2>
+          <h1>🪒</h1>
+          <button class="buy-item teritry">$8,000</button>
+        </div>
+        <div class="item box">
+          <h2>Digital thermometer</h2>
+          <h1>🌡️</h1>
+          <button class="buy-item teritry">$9,000</button>
+        </div>
+        <div class="item box">
+          <h2>Motor oil</h2>
+          <h1>🛢️</h1>
+          <button class="buy-item teritry">$9,000</button>
+        </div>
+        <div class="item box">
+          <h2>Phone charger</h2>
+          <h1>🔌</h1>
+          <button class="buy-item teritry">$10,000</button>
+        </div>
+        <div class="item box">
+          <h2>Phone mount</h2>
+          <h1>📱</h1>
+          <button class="buy-item teritry">$10,000</button>
+        </div>
+        <div class="item box">
+          <h2>Flashlight</h2>
+          <h1>🔦</h1>
+          <button class="buy-item teritry">$12,000</button>
+        </div>
+        <div class="item box">
+          <h2>Disposable camera</h2>
+          <h1>📸</h1>
+          <button class="buy-item teritry">$14,000</button>
+        </div>
+        <div class="item box">
+          <h2>Umbrella</h2>
+          <h1>☔</h1>
+          <button class="buy-item teritry">$15,000</button>
+        </div>
+        <div class="item box">
+          <h2>Headphones</h2>
+          <h1>🎧</h1>
+          <button class="buy-item teritry">$18,000</button>
+        </div>
+        <div class="item box">
+          <h2>Power bank</h2>
+          <h1>🔋</h1>
+          <button class="buy-item teritry">$20,000</button>
+        </div>
+        <div class="item box">
+          <h2>Backpack</h2>
+          <h1>🎒</h1>
+          <button class="buy-item teritry">$25,000</button>
+        </div>        
+      </div>
+    </div>
+
+    <div id="backgrounds">
+      <h1>Backgrounds</h1>
+      <button class="change-bg-color secondary">Change Background Color</button>
+      <div class="backgrounds-box">
+        <div class="background red-to-orange">$5,000</div>
+        <div class="background green-to-yellow">$5,000</div>
+        <div class="background blue-to-purple">$5,000</div>
+        <div class="background red-to-purple">$10,000</div>
+        <div class="background blue-to-teal">$10,000</div>
+        <div class="background super-bg">$20,000</div>
+        <div class="background ultra-bg">$50,000</div>
+      </div>
+    </div>
+
+    <div id="risk-multiplier">
+      <h1>Risk Multiplier</h1>
+      <div class="risk-multiplier-stats">
+        <h3>Multiplies All Wins By 2</h3>
+        <h3>Multiplies All Losses By 4</h3>
+        <button class="secondary enable-risk-multiplier">Enable</button>
+        <h3>Cost: $1,000/Bet</h3>
+      </div>
+    </div>
+
+    <div id="trophies-unlocked">
+      <h1>Trophies Unlocked</h1>
+      <div class="trophies-unlocked"></div>
+    </div>
+
+    <div id="trophies">
+      <h1>Trophies</h1>
+      <div class="trophy-holder">
+        <div class="trophy box hundred-k-trophy">
+          <h2>$100,000</h2>
+          <h1>🥉</h1>
+          <button class="secondary buy-trophy">$100,000</button>
+        </div>
+        <div class="trophy box million-trophy">
+          <h2>$1,000,000</h2>
+          <h1>🥈</h1>
+          <button class="secondary buy-trophy">$1,000,000</button>
+        </div>
+        <div class="trophy box ten-million-trophy">
+          <h2>$10,000,000</h2>
+          <h1>🥇</h1>
+          <button class="secondary buy-trophy">$10,000,000</button>
+        </div>
+        <div class="trophy box hundred-million-trophy">
+          <h2>$100,000,000</h2>
+          <h1>🏆</h1>
+          <button class="secondary buy-trophy">$100,000,000</button>
+        </div>
       </div>
     </div>
 

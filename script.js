@@ -17,6 +17,28 @@ let flipsPredicted = document.querySelector('.predicted-flips');
 const headsImg = './assets/heads.png';
 const tailsImg = './assets/tails.png';
 
+const sounds = {
+  bet: new Audio('./assets/sounds/bet.mp3'),
+  buyBackground: new Audio('./assets/sounds/buy-background.mp3'),
+  buyLootbox: new Audio('./assets/sounds/buy-loot-box.mp3'),
+  buyTrophy: new Audio('./assets/sounds/buy-trophy.mp3'),
+  changeBackground: new Audio('./assets/sounds/change-bg-color.mp3'),
+  cheats: new Audio('./assets/sounds/cheats.mp3'),
+  click: new Audio('./assets/sounds/click.mp3'),
+  flippingCoin: new Audio('./assets/sounds/flipping-coin.mp3'),
+  itemShop: new Audio('./assets/sounds/item-shop.mp3'),
+  jackpot: new Audio('./assets/sounds/jackpot.mp3'),
+  levelUp: new Audio('./assets/sounds/level-up.mp3'),
+  lose: new Audio('./assets/sounds/lose.mp3'),
+  lostBet: new Audio('./assets/sounds/lost-bet.mp3'),
+  openLootbox: new Audio('./assets/sounds/open-loot-box.mp3'),
+  slotPayout: new Audio('./assets/sounds/slot-payout.mp3'),
+  slotSpin: new Audio('./assets/sounds/slot-spin-sound.mp3'),
+  unlockUpgrade: new Audio('./assets/sounds/unlock-upgrade.mp3'),
+  winBet: new Audio('./assets/sounds/win-bet.mp3'),
+  win: new Audio('./assets/sounds/win.mp3'),
+}
+
 function formatSomething(item, style) {
   if (style == 'money') {
     return item.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -51,13 +73,24 @@ function bet(side, autoBet, betAmount) {
     if (!autoBet) {alert('Invalid bet amount. Please enter a valid number.');}
     return;
   }
+  if (riskMultiplierEnabled) {
+    if ((money - betAmount) - 1000 >= 0) {money -= 1000;}
+    else {
+      alert('You do not have enough money to continue using the Risk Multiplier');
+      riskMultiplierEnabled = false;
+      riskMultiplierBtn.textContent = 'Enable';
+      alert('Risk Multiplier disabled! Your bets will return to normal.');
+    }
+  }
   money -= betAmount;
+  playSound(sounds.bet);
   updateStats();
 
   let coinFlip = Math.random() < headsChance ? 'Heads' : 'Tails';
   for (let i = 0; i < 20; i++) {
     setTimeout(() => {
       coinImg.src = i % 2 === 0 ? headsImg : tailsImg;
+      playSound(sounds.flippingCoin);
     }, i * delay);
   }
 
@@ -66,15 +99,18 @@ function bet(side, autoBet, betAmount) {
     else if (coinFlip == "Tails") {coinImg.src = tailsImg;}
     totalBets++;
     if (coinFlip == side) {
-      money += betAmount*2;
-      terminal.textContent = `You won $${formatSomething(betAmount*2, 'money')}! The coin landed on ${coinFlip}.`;
+      money += riskMultiplierEnabled ? betAmount*3 : betAmount*2;
+      terminal.textContent = `You won $${formatSomething(riskMultiplierEnabled ? betAmount*2 : betAmount, 'money')}! The coin landed on ${coinFlip}.`;
+      playSound(sounds.winBet);
       let newElement = document.createElement('h2');
-      newElement.textContent = `${side} - $${formatSomething(betAmount*2, 'money')} - Flip ${totalBets}`;
+      newElement.textContent = `${side} - $${formatSomething(riskMultiplierEnabled ? betAmount*2 : betAmount, 'money')} - Flip ${totalBets}`;
       flipsPredicted.insertBefore(newElement, flipsPredicted.firstChild);
-      updateStats();
     } else {
-      terminal.textContent = `You lost $${formatSomething(betAmount, 'money')}. The coin landed on ${coinFlip}.`;
+      money -= riskMultiplierEnabled ? betAmount*3 : 0;
+      playSound(sounds.lostBet);
+      terminal.textContent = `You lost $${formatSomething(riskMultiplierEnabled ? betAmount*4 : betAmount, 'money')}. The coin landed on ${coinFlip}.`;
     }
+    updateStats();
   }, 20 * delay);
   if (!gameOver) {setTimeout(gameOverCheck, delay == 100 ? 2250 : 1250);}
 }
@@ -133,6 +169,7 @@ function gameOverCheck() {
     }, 500);
     setTimeout(() => {
       gameOverScreen.style.display = 'flex';
+      playSound(sounds.lose);
     }, 2000);
   } else {
   }
@@ -166,7 +203,8 @@ upgradeHeads.addEventListener('click', () => {
     tailsChance -= 0.01;
     if (headsLevel == 50) {upgradeHeads.disabled = true;}
     else {levelUpHeadsPrice = Math.floor(levelUpHeadsPrice * 1.25);}
-    checkUpgradeRewards('Heads', [lvl5HeadsReward, lvl10HeadsReward, lvl15HeadsReward, lvl20HeadsReward, lvl25HeadsReward]);
+    playSound(sounds.levelUp);
+    checkUpgradeRewards('Heads', [lvl5HeadsReward, lvl10HeadsReward, lvl15HeadsReward, lvl20HeadsReward, lvl25HeadsReward, lvl30HeadsReward]);
     updateStats();
     gameOverCheck();
   } else {
@@ -181,7 +219,8 @@ upgradeTails.addEventListener('click', () => {
     headsChance -= 0.01;
     if (tailsLevel == 50) {upgradeTails.disabled = true;}
     else {levelUpTailsPrice = Math.floor(levelUpTailsPrice * 1.25);}
-    checkUpgradeRewards('Tails', [lvl5TailsReward, lvl10TailsReward, lvl15TailsReward, lvl20TailsReward, lvl25TailsReward]);
+    playSound(sounds.levelUp);
+    checkUpgradeRewards('Tails', [lvl5TailsReward, lvl10TailsReward, lvl15TailsReward, lvl20TailsReward, lvl25TailsReward, lvl30TailsReward]);
     updateStats();
     gameOverCheck();
   } else {
@@ -206,6 +245,8 @@ let lvl20HeadsReward = document.querySelector('.lvl-twenty-upgrade > .heads-upgr
 let lvl20TailsReward = document.querySelector('.lvl-twenty-upgrade > .tails-upgrade > button');
 let lvl25HeadsReward = document.querySelector('.lvl-twenty-five-upgrade > .heads-upgrade > button');
 let lvl25TailsReward = document.querySelector('.lvl-twenty-five-upgrade > .tails-upgrade > button');
+let lvl30HeadsReward = document.querySelector('.lvl-thirty-upgrade > .heads-upgrade > button');
+let lvl30TailsReward = document.querySelector('.lvl-thirty-upgrade > .tails-upgrade > button');
 
 lvl5HeadsReward.addEventListener('click', () => {
   if (money >= 500) {
@@ -215,6 +256,7 @@ lvl5HeadsReward.addEventListener('click', () => {
     autoBetHeads.disabled = false;
     lvl5HeadsReward.classList.remove("secondary");
     lvl5HeadsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
     alert('You have unlocked Auto Bet Heads!');
     updateStats();
   } else {
@@ -229,6 +271,7 @@ lvl5TailsReward.addEventListener('click', () => {
     autoBetTails.disabled = false;
     lvl5TailsReward.classList.remove("secondary");
     lvl5TailsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
     alert('You have unlocked Auto Bet Tails!');
     updateStats();
   } else {
@@ -236,37 +279,99 @@ lvl5TailsReward.addEventListener('click', () => {
   }
 });
 
-[lvl10HeadsReward, lvl10TailsReward, lvl15HeadsReward, lvl15TailsReward, lvl20HeadsReward, lvl20TailsReward].forEach(button => {
+[lvl10HeadsReward, lvl10TailsReward, lvl20TailsReward, lvl25TailsReward].forEach(button => {
   button.addEventListener('click', () => {
     alert('This feature is not yet implemented.');
     button.disabled = true;
     button.classList.remove("secondary");
     button.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
   });
+});
+
+lvl15HeadsReward.addEventListener('click', () => {
+  if (money >= 5000) {
+    money -= 5000;
+    document.querySelector('#backgrounds').style.display = 'flex';
+    lvl15HeadsReward.disabled = true;
+    lvl15HeadsReward.classList.remove("secondary");
+    lvl15HeadsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
+    alert('You have unlocked the Backgrounds feature!');
+    updateStats();
+  } else {
+    alert("You don't have enough money to unlock the Backgrounds feature.");
+  }
+});
+lvl15TailsReward.addEventListener('click', () => {
+  if (money >= 5000) {
+    money -= 5000;
+    document.querySelector('#risk-multiplier').style.display = 'block';
+    lvl15TailsReward.disabled = true;
+    lvl15TailsReward.classList.remove("secondary");
+    lvl15TailsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
+    alert('You have unlocked the Risk Multiplier feature!');
+    updateStats();
+  } else {
+    alert("You don't have enough money to unlock the Risk Multiplier feature.");
+  }
+});
+
+lvl20HeadsReward.addEventListener('click', () => {
+  if (money >= 15000) {
+    money -= 15000;
+    document.querySelector('#trophies').style.display = 'block';
+    lvl20HeadsReward.disabled = true;
+    lvl20HeadsReward.classList.remove("secondary");
+    lvl20HeadsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
+    alert('You have unlocked the Trophies feature!');
+    updateStats();
+  } else {
+    alert("You don't have enough money to unlock the Trophies feature.");
+  }
 });
 
 lvl25HeadsReward.addEventListener('click', () => {
   if (money >= 50000) {
     money -= 50000;
-    headsChance += 0.1;
-    tailsChance -= 0.1;
+    document.querySelector('#item-shop').style.display = 'block';
     lvl25HeadsReward.disabled = true;
     lvl25HeadsReward.classList.remove("secondary");
     lvl25HeadsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
+    alert('You have unlocked the Item Shop!');
+    updateStats();
+  } else {
+    alert("You don't have enough money to unlock the Item Shop.");
+  }
+});
+
+lvl30HeadsReward.addEventListener('click', () => {
+  if (money >= 100000) {
+    money -= 100000;
+    headsChance += 0.1;
+    tailsChance -= 0.1;
+    lvl30HeadsReward.disabled = true;
+    lvl30HeadsReward.classList.remove("secondary");
+    lvl30HeadsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
     alert('You have unlocked a 10% Heads Boost!');
     updateStats();
   } else {
     alert("You don't have enough money to unlock the 10% Heads Boost.");
   }
 });
-lvl25TailsReward.addEventListener('click', () => {
-  if (money >= 50000) {
-    money -= 50000;
+lvl30TailsReward.addEventListener('click', () => {
+  if (money >= 100000) {
+    money -= 100000;
     tailsChance += 0.1;
     headsChance -= 0.1;
-    lvl25TailsReward.disabled = true;
-    lvl25TailsReward.classList.remove("secondary");
-    lvl25TailsReward.classList.add("teritry");
+    lvl30TailsReward.disabled = true;
+    lvl30TailsReward.classList.remove("secondary");
+    lvl30TailsReward.classList.add("teritry");
+    playSound(sounds.unlockUpgrade);
     alert('You have unlocked a 10% Tails Boost!');
     updateStats();
   } else {
@@ -286,4 +391,93 @@ function playSound(audioSource) {
 muteBtn.addEventListener('click', () => {
   soundsMuted = !soundsMuted;
   muteBtn.textContent = soundsMuted ? 'Unmute' : 'Mute';
+});
+
+let backgroundColors = ['white', 'black', 'orange', 'yellow', 'green', 'blue', 'purple'];
+let pointer = 1;
+let backgroundColorSwitcher = document.querySelector('.change-bg-color');
+
+backgroundColorSwitcher.addEventListener('click', () => {
+  document.body.classList.remove(backgroundColors[pointer]);
+  pointer = pointer + 1 >= backgroundColors.length ? 0 : pointer + 1;
+  document.body.classList.add(backgroundColors[pointer]);
+  playSound(sounds.changeBackground);
+});
+
+let specialBackgrounds = ['red-to-orange', 'green-to-yellow', 'blue-to-purple', 'red-to-purple', 'blue-to-teal', 'super-bg', 'ultra-bg'];
+let specialBackgroundsPrice = [5000, 5000, 5000, 10000, 10000, 20000, 50000];
+let specialBackgroundsUnlocked = [false, false, false, false, false, false, false];
+
+specialBackgrounds.forEach((bg, index) => {
+  let button = document.querySelector(`.${bg}.background`);
+  button.addEventListener('click', () => {
+    if (!specialBackgroundsUnlocked[index] && money >= specialBackgroundsPrice[index]) {
+      money -= specialBackgroundsPrice[index];
+      specialBackgroundsUnlocked[index] = true;
+      backgroundColors.push(bg);
+      button.textContent = 'Switch';
+      playSound(sounds.buyBackground);
+      updateStats();
+    }
+    if (specialBackgroundsUnlocked[index]) {
+      document.body.classList.remove(...backgroundColors);
+      document.body.classList.add(bg);
+      pointer = backgroundColors.indexOf(bg);
+    }
+  });
+});
+
+let riskMultiplierEnabled = false;
+let riskMultiplierBtn = document.querySelector('.enable-risk-multiplier');
+
+riskMultiplierBtn.addEventListener('click', function() {
+  riskMultiplierEnabled = !riskMultiplierEnabled;
+  riskMultiplierBtn.textContent = riskMultiplierEnabled ? 'Disable' : 'Enable';
+  alertText = riskMultiplierEnabled ? 'Risk Multiplier enabled! Your winning bets will be multiplied by 2 but losing bets will be amplified by 4.' : 'Risk Multiplier disabled! Your bets will return to normal.';
+  alert(alertText);
+});
+
+let trophyIcons = ["🥉","🥈","🥇","🏆"];
+let trophyPrices = [100000, 1000000, 10000000, 100000000];
+let trophys = document.querySelectorAll('.trophy > button');
+
+trophys.forEach((trophy, index) => {
+  trophy.addEventListener('click', () => {
+    if (money >= trophyPrices[index]) {
+      money -= trophyPrices[index];
+      trophy.classList.remove('secondary');
+      trophy.classList.add('teritry');
+      trophy.disabled = true;
+      document.querySelector('#trophies-unlocked').style.display = 'block';
+      playSound(sounds.buyTrophy);
+      let trophyUnlocked = document.createElement('h1');
+      trophyUnlocked.textContent = trophyIcons[index];
+      document.querySelector('.trophies-unlocked').appendChild(trophyUnlocked);
+      alert(`You have unlocked the $${formatSomething(trophyPrices[index], 'crypto')} trophy!`);
+      updateStats();
+    } else {
+      alert("You don't have enough money to buy this trophy.");
+    }
+  });
+});
+
+let itemShopIcons = ["🥔","🎟️","🥤","⚡","🍫","🌬️","☕","🥛","🥪","🍦","📚","🧻","💊","🪒","🌡️","🛢️","🔌","📱","🔦","📸","☔","🎧","🔋","🎒"];
+let itemShopPrice = [2000,2000,2000,3000,3000,4000,4000,5000,5000,6000,6000,6000,7000,8000,9000,9000,10000,10000,12000,14000,15000,18000,20000,25000];
+let itemShopButtons = document.querySelectorAll('.item > .buy-item');
+
+itemShopButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    if (money >= itemShopPrice[index]) {
+      money -= itemShopPrice[index];
+      button.disabled = true;
+      document.querySelector('#items-bought').style.display = 'block';
+      let itemBought = document.createElement('h1');
+      itemBought.textContent = itemShopIcons[index];
+      document.querySelector('.items-bought').appendChild(itemBought);
+      playSound(sounds.itemShop);
+      updateStats();
+    } else {
+      alert("You don't have enough money to buy this item.");
+    }
+  });
 });

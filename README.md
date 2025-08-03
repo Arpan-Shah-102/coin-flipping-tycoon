@@ -20,4 +20,17 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 4. Added updates section for each level milestone in heads and tales
 5. Built foundation for major content updates
 6. Added Option for Later
-7. Added Flips Predicted Log
+7. Added Flips Predicted Log <br/>
+<br/>
+
+### Major Content Update 1 V1.5
+1. Fixed Multiple Bugs
+2. Added A way to lose
+3. Added New Upgrades in Milestone Path
+4. Added Sound Effects
+5. Added the Item Shop
+6. Added Backgrounds
+7. Added Risk Multiplier
+8. Added Trophies
+9. Added Mute Button
+10. Changed Milestone Upgrade color for heads
