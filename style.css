@@ -179,6 +179,7 @@ button {
 }
 .coin-img {
   width: 250px;
+  height: 250px;
   margin: 20px;
   display: block;
   transition: transform 0.3s ease-in-out;
@@ -325,19 +326,101 @@ button {
   font-size: 2rem;
 }
 
+#lootbox {
+  margin: 60px 0px;
+  display: none;
+}
+.change-coin {display: none;}
+.lb-window {word-wrap: break-word;}
+.lootbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#slot-machine {display: none;}
+.holder {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > h1 {
+    margin: 0px;
+  }
+}
+.img-div {
+  background-image: url("./assets/slot-machine-bg.png");
+  height: 200px;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.number {
+  font-size: 40px;
+  margin: 10px;
+  padding-bottom: 10px;
+}
+.money-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  & > p {
+    margin: 10px;
+    font-size: 1.25rem;
+  }
+}
+.slot-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 #flips-predicted {margin: 50px 0px;}
 .predicted-flips {margin: 40px 0px;}
 
-.game-over {
+.game-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(174, 0, 0, 0.75);
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+}
+.game-over {
+  background-color: rgba(174, 0, 0, 0.75);
+}
+.white-btn {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover {
+      background-color: transparent;
+      color: white;
+      transform: none;
+    }
+  }
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+  &:active {
+    background-color: transparent;
+    border-color: white;
+    color: white;
+  }
 }

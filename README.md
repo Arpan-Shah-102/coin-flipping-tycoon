@@ -13,7 +13,7 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 (Note this version will have a lot of bugs) <br/>
 <br/> <br/>
 
-### Minor Content Update V1.25
+### Minor Content Update V1.2
 1. Fixed Multiple Bugs
 2. Introduced Auto Betting to the normal game
 3. Reduced Max Level from 100 > 50
@@ -23,7 +23,7 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 7. Added Flips Predicted Log <br/>
 <br/>
 
-### Major Content Update 1 V1.5
+### Major Content Update V1.55
 1. Fixed Multiple Bugs
 2. Added A way to lose
 3. Added New Upgrades in Milestone Path
@@ -34,3 +34,9 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 8. Added Trophies
 9. Added Mute Button
 10. Changed Milestone Upgrade color for heads
+
+### Minor Content Update 2 V1.85
+1. Fixed Some Bugs
+2. Added Lootbox
+3. Added Slot Machine
+4. Prepared Update for Loans
