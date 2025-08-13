@@ -10,8 +10,7 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 1. Added coin and it's basic functionality
 2. Set up code for Auto Betting
 3. Added level up section for improving coin odds <br/>
-(Note this version will have a lot of bugs) <br/>
-<br/> <br/>
+(Note this version will have a lot of bugs)
 
 ### Minor Content Update V1.2
 1. Fixed Multiple Bugs
@@ -20,8 +19,7 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 4. Added updates section for each level milestone in heads and tales
 5. Built foundation for major content updates
 6. Added Option for Later
-7. Added Flips Predicted Log <br/>
-<br/>
+7. Added Flips Predicted Log
 
 ### Major Content Update V1.55
 1. Fixed Multiple Bugs
