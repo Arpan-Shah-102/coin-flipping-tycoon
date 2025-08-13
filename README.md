@@ -40,3 +40,4 @@ You can play coin flipping tycoon at https://arpan-shah-102.github.io/coin-flipp
 2. Added Lootbox
 3. Added Slot Machine
 4. Prepared Update for Loans
+5. Added 'nextFlip' varible for future cheat menu
